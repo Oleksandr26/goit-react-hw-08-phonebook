@@ -46,7 +46,7 @@ export function App() {
   }
 
   const visibleContacts = contacts.filter(item =>
-    item.name.toLowerCase().includes(filterValue)
+    item.name.toLowerCase().includes(filterValue.toLowerCase())
   );
 
   return (
