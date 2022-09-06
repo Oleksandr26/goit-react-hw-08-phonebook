@@ -4,18 +4,20 @@ import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addContact,
-  removeContact,
-  filterContact,
-} from '../features/contact/contactAction';
+import { filterContact } from '../features/contact/contactAction';
+import { addContact, removeContact, getContacts } from '../services/API';
+import { useEffect } from 'react';
 
 export function App() {
-  const { contacts } = useSelector(state => state.contacts);
-  const { filter } = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter);
 
   const dispatch = useDispatch();
   const filterValue = filter;
+
+  useEffect(() => {
+    dispatch(getContacts());
+  }, [dispatch]);
 
   function handleAddContact(contact) {
     const action = addContact(contact);
@@ -43,11 +45,9 @@ export function App() {
     dispatch(removeContact(id));
   }
 
-  const visibleContacts = () => {
-    return contacts.filter(item =>
-      item.name.toLowerCase().includes(filterValue)
-    );
-  };
+  const visibleContacts = contacts.filter(item =>
+    item.name.toLowerCase().includes(filterValue)
+  );
 
   return (
     <div
@@ -62,10 +62,7 @@ export function App() {
       <ContactForm onSubmit={handleAddContact} />
       <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>Contacts</h2>
       <Filter onChange={handlefilterContact} />
-      <ContactList
-        contacts={visibleContacts()}
-        onDelete={handleRemoveContact}
-      />
+      <ContactList contacts={visibleContacts} onDelete={handleRemoveContact} />
     </div>
   );
 }

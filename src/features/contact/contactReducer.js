@@ -1,21 +1,42 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addContact, removeContact, filterContact } from './contactAction';
+import { filterContact } from './contactAction';
+import { addContact, removeContact, getContacts } from '../../services/API';
 
 const initialState = {
   contacts: [],
   filter: '',
+  error: null,
 };
 
 const contactReducer = createReducer(initialState, {
-  [addContact]: (state, { payload }) => {
-    state.contacts = [...state.contacts, payload];
+  [getContacts.fulfilled]: (state, action) => {
+    state.contacts = action.payload;
   },
-  [removeContact]: (state, { payload }) => {
-    console.log('payload: ', payload);
-    state.contacts = state.contacts.filter(item => item.id !== payload);
+
+  [getContacts.rejected]: (state, action) => {
+    state.error = action.payload;
   },
-  [filterContact]: (state, { payload }) => {
-    state.filter = payload.toLowerCase().trim();
+
+  [addContact.fulfilled]: (state, action) => {
+    state.contacts.push(action.payload);
+  },
+
+  [addContact.rejected]: (state, action) => {
+    state.error = action.payload;
+  },
+
+  [removeContact.fulfilled]: (state, action) => {
+    state.contacts = state.contacts.filter(
+      contact => contact.id !== action.payload
+    );
+  },
+
+  [removeContact.rejected]: (state, action) => {
+    state.error = action.payload;
+  },
+
+  [filterContact]: (state, action) => {
+    state.filter = action.payload;
   },
 });
 
