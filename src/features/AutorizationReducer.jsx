@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { register, logIn, logOut, getLastUser } from './Register';
+import Notiflix from 'notiflix';
 
 const initalState = {
   user: { name: null, email: null },
@@ -16,11 +17,12 @@ const autorization = createReducer(initalState, {
   },
 
   [register.rejected]: (state, action) => {
-    // message.error('Registration error', `${action.payload.message}`, 'Ok');
+    console.log('action: ', action.payload.message);
+    Notiflix.Notify.failure('Registration error');
   },
 
-  [logIn.rejected]: (state, action) => {
-    // message.error('Login failed', `${action.payload.message}`, 'Ok');
+  [logIn.rejected]: () => {
+    Notiflix.Notify.failure('Login failed, wrong username or password');
   },
 
   [logIn.fulfilled]: (state, action) => {
@@ -29,8 +31,8 @@ const autorization = createReducer(initalState, {
     state.isLoggedIn = true;
   },
 
-  [logOut.rejected]: (state, action) => {
-    // message.error('Logout failed', `${action.payload.message}`, 'Ok');
+  [logOut.rejected]: () => {
+    Notiflix.Notify.failure('Logout failed, please try again');
   },
 
   [logOut.fulfilled]: (state, action) => {

@@ -12,7 +12,6 @@ const Home = lazy(() => import('pages/Home'));
 const Contacts = lazy(() => import('pages/Contacts'));
 const RegisterForm = lazy(() => import('pages/RegisterForm'));
 const LoginForm = lazy(() => import('pages/LoginForm'));
-// const PageNotFound = lazy(() => import('pages/PageNotFound'));
 
 const App = () => {
   const dispatch = useDispatch();

@@ -18,7 +18,7 @@ const RegisterForm = () => {
 
   return (
     <form className={s.form} onSubmit={submitData}>
-      <p className={s.title}>Create a new accaunt</p>
+      <p className={s.title}>Fill in for registration</p>
       <label className={s.label}>
         <span>Name</span>
         <input

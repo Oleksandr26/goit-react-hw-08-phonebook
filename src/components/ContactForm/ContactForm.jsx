@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
-// import { FaUser, FaPhoneAlt } from 'react-icons/fa';
 import { addContact } from '../../features/contact/OperationsWithContacts';
-// import message from 'helpers/Message';
 import s from './ContactForm.module.css';
 
 export const ContactForm = () => {
@@ -13,11 +11,6 @@ export const ContactForm = () => {
   const submitData = event => {
     event.preventDefault();
     if (contacts.find(({ name }) => name === contact.name)) {
-      // message.warning(
-      //   `${contact.name} is already in contacts`,
-      //   '',
-      //   'I understand'
-      // );
     } else {
       dispatch(addContact(contact));
     }
@@ -63,5 +56,3 @@ export const ContactForm = () => {
     </form>
   );
 };
-
-// export default ContactForm;

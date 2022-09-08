@@ -18,7 +18,7 @@ const LoginForm = () => {
 
   return (
     <form className={s.form} onSubmit={submitData}>
-      <p className={s.title}>Log into the Phonebook</p>
+      <p className={s.title}>Please fill up the form</p>
       <label className={s.label}>
         <span className={s.label__text}>Email</span>
         <input

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-// import { RiDeleteBin5Line } from 'react-icons/ri';
 import {
   getContacts,
   deleteContact,
@@ -45,6 +44,6 @@ export const ContactList = () => {
       ))}
     </ul>
   ) : (
-    <div style={{ textAlign: 'center' }}>You haven't contacts yet</div>
+    <div style={{ textAlign: 'center' }}>You haven't contacts</div>
   );
 };
