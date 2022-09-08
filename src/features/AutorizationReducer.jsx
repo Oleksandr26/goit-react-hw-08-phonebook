@@ -14,11 +14,13 @@ const autorization = createReducer(initalState, {
     state.user = action.payload.user;
     state.token = action.payload.token;
     state.isLoggedIn = true;
+    Notiflix.Notify.success('Welcome to your personal phone book!');
   },
 
-  [register.rejected]: (state, action) => {
-    console.log('action: ', action.payload.message);
-    Notiflix.Notify.failure('Registration error');
+  [register.rejected]: () => {
+    Notiflix.Notify.failure(
+      'Registration error,check the correctness of the recorded data and try again'
+    );
   },
 
   [logIn.rejected]: () => {
@@ -29,6 +31,7 @@ const autorization = createReducer(initalState, {
     state.user = action.payload.user;
     state.token = action.payload.token;
     state.isLoggedIn = true;
+    Notiflix.Notify.success(`Welcome back ${state.user.name}`);
   },
 
   [logOut.rejected]: () => {
