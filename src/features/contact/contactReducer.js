@@ -1,43 +1,64 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { filterContact } from './contactAction';
-import { addContact, removeContact, getContacts } from '../../services/API';
+import { getContacts } from './OperationsWithContacts';
+import { addContact } from './OperationsWithContacts';
+import { deleteContact } from './OperationsWithContacts';
+import { filterContacts } from './contactAction';
 
-const initialState = {
-  contacts: [],
+const initalState = {
+  items: [],
   filter: '',
+  isLoding: false,
   error: null,
 };
 
-const contactReducer = createReducer(initialState, {
+const contacts = createReducer(initalState, {
+  [getContacts.pending]: state => {
+    state.isLoding = true;
+  },
+
   [getContacts.fulfilled]: (state, action) => {
-    state.contacts = action.payload;
+    state.items = action.payload;
+    state.isLoding = false;
   },
 
   [getContacts.rejected]: (state, action) => {
     state.error = action.payload;
+    state.isLoding = false;
+  },
+
+  [addContact.pending]: state => {
+    state.isLoding = true;
   },
 
   [addContact.fulfilled]: (state, action) => {
-    state.contacts.push(action.payload);
+    state.items.unshift(action.payload);
+    state.isLoading = false;
   },
 
   [addContact.rejected]: (state, action) => {
     state.error = action.payload;
+    state.isLoading = false;
   },
 
-  [removeContact.fulfilled]: (state, action) => {
-    state.contacts = state.contacts.filter(
-      contact => contact.id !== action.payload
-    );
+  [deleteContact.pending]: state => {
+    state.isLoding = true;
   },
 
-  [removeContact.rejected]: (state, action) => {
+  [deleteContact.fulfilled]: (state, action) => {
+    state.items = state.items.filter(contact => {
+      return contact.id !== action.payload;
+    });
+    state.isLoading = false;
+  },
+
+  [deleteContact.rejected]: (state, action) => {
     state.error = action.payload;
+    state.isLoading = false;
   },
 
-  [filterContact]: (state, action) => {
+  [filterContacts]: (state, action) => {
     state.filter = action.payload;
   },
 });
 
-export default contactReducer;
+export default contacts;
