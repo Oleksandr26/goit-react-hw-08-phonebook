@@ -1,4 +1,4 @@
-.box {
+.container {
   display:flex;
   justify-content: center;
   border-top-left-radius: 4px;

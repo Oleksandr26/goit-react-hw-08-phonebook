@@ -10,6 +10,7 @@
 }
 
 .button {
+  padding: 5px;
   background-color: grey;
   border-color: transparent;
   border-radius: 4px;

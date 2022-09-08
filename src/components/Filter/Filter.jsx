@@ -11,11 +11,9 @@ export const Filter = () => {
   return (
     <div className={s.container}>
       <label className={s.label}>
-        Find contacts by name
-        <br />
-        <input type="text" onChange={onChange} />
+        <span>Find contacts by name:</span>
+        <input type="text" className={s.input} onChange={onChange} />
       </label>
     </div>
   );
 };
-// export default Filter;

@@ -1,0 +1,47 @@
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.link {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 24px;
+    color: grey;
+}
+
+.link:hover {
+    font-size: 25px;
+}
+
+.active {
+    composes: link;
+    color: seagreen;
+}
+
+.button {
+    width: 100px;
+    padding: 5px;
+  background-color: grey;
+  border-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: yellow;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 20px;
+    text-align: center;
+}

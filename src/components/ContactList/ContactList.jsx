@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 // import { RiDeleteBin5Line } from 'react-icons/ri';
-import { getContacts, deleteContact } from '../../services/operations';
+import {
+  getContacts,
+  deleteContact,
+} from '../../features/contact/OperationsWithContacts';
 import s from './ContactList.module.css';
 
 export const ContactList = () => {
@@ -27,7 +30,7 @@ export const ContactList = () => {
       {visibleList.map(({ name, number, id }) => (
         <li className={s.item} key={id}>
           <div className={s.user}>
-            <span className={s.name}>{name} :</span>
+            <span>{name} :</span>
             <span>{number}</span>
           </div>
           <button
@@ -36,14 +39,12 @@ export const ContactList = () => {
             title="delete contact"
             onClick={() => onDelete(id)}
           >
-            {/* <RiDeleteBin5Line size="25" /> */}
+            Delete
           </button>
         </li>
       ))}
     </ul>
   ) : (
-    <div className={s.list}>You haven't contacts yet</div>
+    <div style={{ textAlign: 'center' }}>You haven't contacts yet</div>
   );
 };
-
-// export default ContactList;

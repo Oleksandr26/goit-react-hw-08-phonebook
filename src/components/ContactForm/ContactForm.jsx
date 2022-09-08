@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 // import { FaUser, FaPhoneAlt } from 'react-icons/fa';
-import { addContact } from '../../services/operations';
+import { addContact } from '../../features/contact/OperationsWithContacts';
 // import message from 'helpers/Message';
 import s from './ContactForm.module.css';
 
@@ -43,7 +43,6 @@ export const ContactForm = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-        {/* <FaUser className={s.icon} size="15" /> */}
       </label>
       <label className={s.label}>
         <span className={s.label__text}>Number</span>
@@ -57,7 +56,6 @@ export const ContactForm = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-        {/* <FaPhoneAlt className={s.icon} size="15" /> */}
       </label>
       <button className={s.button} type="submit">
         Add contact
