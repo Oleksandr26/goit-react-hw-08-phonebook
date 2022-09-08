@@ -16,6 +16,7 @@ const LoginForm = lazy(() => import('pages/LoginForm'));
 const App = () => {
   const dispatch = useDispatch();
   const isShowLoader = useSelector(state => state.auth.isGettingUser);
+  const isToken = useSelector(state => state.auth.token);
 
   useEffect(() => {
     dispatch(getLastUser());
@@ -55,6 +56,19 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
+              <Route
+                path="*"
+                element={
+                  isToken ? (
+                    <PrivateRoute>
+                      <Contacts />
+                    </PrivateRoute>
+                  ) : (
+                    <LoginForm />
+                  )
+                }
+              />
+              <Route path="*" element={<LoginForm />} />
             </Routes>
           </Suspense>
         </>
