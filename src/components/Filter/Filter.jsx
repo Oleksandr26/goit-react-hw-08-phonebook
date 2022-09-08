@@ -1,17 +1,21 @@
+import { useDispatch } from 'react-redux/es/exports';
+import { filterContacts } from '../../features/contact/contactAction';
 import s from './Filter.module.css';
-import PropTypes from 'prop-types';
 
-export function Filter({ onChange }) {
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const onChange = event => {
+    dispatch(filterContacts(event.currentTarget.value.toLowerCase()));
+  };
+
   return (
-    <div className={s.box}>
+    <div className={s.container}>
       <label className={s.label}>
-        <span>Find contacts by name:</span>
-        <input className={s.input} type="text" onChange={onChange} />
+        Find contacts by name
+        <br />
+        <input type="text" onChange={onChange} />
       </label>
     </div>
   );
-}
-
-Filter.propTypes = {
-  onChange: PropTypes.func.isRequired,
 };
+// export default Filter;
